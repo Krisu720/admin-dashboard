@@ -25,7 +25,7 @@ export default function RootLayout({
             <div className="lg:block hidden w-72 dark:bg-slate-950 bg-gray-200 h-screen border-r p-4">
               <Sidebar />
             </div>
-            {children}
+            <div className="m-6 w-full">{children}</div>
           </div>
           <div className="fixed bottom-5 left-5 block lg:hidden">
             <MobileSidebar />

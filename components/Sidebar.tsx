@@ -1,3 +1,5 @@
+'use client'
+
 import { Home, Paperclip } from "lucide-react";
 import { Button } from "./ui/button";
 import ThemeDropdown from "./ThemeDropdown";
@@ -22,7 +24,7 @@ const nav: Nav[] = [
   },
 ];
 
-const Sidebar = ({}) => {
+const Sidebar = ({ closeSidebar }: { closeSidebar?: () => void }) => {
   return (
     <div className="flex-col h-full flex">
       <div className="border-b h-28 p-6">
@@ -33,7 +35,7 @@ const Sidebar = ({}) => {
       </div>
       <div className="flex flex-col p-2">
         {nav.map(({ name, href, Icon }) => (
-          <Link href={href} key={name}>
+          <Link href={href} key={name} onClick={closeSidebar && closeSidebar}>
             <Button
               variant="ghost"
               className="flex justify-start items-center w-full"
