@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import Sidebar from "@/components/Sidebar";
 import MobileSidebar from "@/components/MobileSidebar";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({ weight: "500", subsets: ["latin"] });
@@ -22,14 +23,17 @@ export default function RootLayout({
       <body className={poppins.className}>
         <ThemeProvider>
           <div className="flex">
-            <div className="lg:block hidden w-72 dark:bg-slate-950 bg-gray-200 h-screen border-r p-4">
+            <div className="lg:block hidden w-96 dark:bg-slate-950 bg-gray-200 h-screen border-r p-4">
               <Sidebar />
             </div>
-            <div className="m-6 w-full">{children}</div>
+            <div className="p-3 lg:p-6 w-full lg:container mx-auto overflow-hidden">
+              {children}
+            </div>
           </div>
           <div className="fixed bottom-5 left-5 block lg:hidden">
             <MobileSidebar />
           </div>
+          <Toaster/>
         </ThemeProvider>
       </body>
     </html>

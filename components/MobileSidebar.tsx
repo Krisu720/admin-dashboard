@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
@@ -14,7 +15,7 @@ const MobileSidebar = ({}) => {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
+      <SheetTrigger asChild aria-controls="trigger">
         <Button variant="outline" size="icon">
           <ChevronRight />
         </Button>

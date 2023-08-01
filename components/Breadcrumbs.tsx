@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC,Fragment } from "react";
 import { Separator } from "@/components/ui/separator";
 import { HomeIcon } from "lucide-react";
 import Link from "next/link";
@@ -20,14 +20,14 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ items }) => {
         items.map(({ name, href }, index) => {
           if (index === items.length - 1)
             return (
-              <>
+              <Fragment key={name}>
                 <Separator orientation="vertical" className="h-4" />
                 <h1 className="select-none">{name}</h1>
-              </>
+              </Fragment>
             );
           else
             return (
-              <>
+              <Fragment key={name}>
                 <Separator orientation="vertical" className="h-4" />
                 <Link
                   href={href}
@@ -35,7 +35,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ items }) => {
                 >
                   {name}
                 </Link>
-              </>
+              </Fragment>
             );
         })}
     </div>

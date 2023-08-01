@@ -1,109 +1,91 @@
-export const cities = [
+import { ApexOptions } from "apexcharts";
+
+export const chartData: ApexOptions = {
+  theme: {
+    mode: "dark",
+    palette: "palette1",
+    monochrome: {
+      enabled: false,
+      color: "#255aee",
+      shadeTo: "dark",
+      shadeIntensity: 0.65,
+    },
+  },
+  chart: {
+    height: 350,
+    type: "area",
+    background: "transparent",
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    curve: "smooth",
+  },
+  xaxis: {
+    type: "datetime",
+    categories: [
+      "2018-09-19T00:00:00.000Z",
+      "2018-09-19T01:30:00.000Z",
+      "2018-09-19T02:30:00.000Z",
+      "2018-09-19T03:30:00.000Z",
+      "2018-09-19T04:30:00.000Z",
+      "2018-09-19T05:30:00.000Z",
+      "2018-09-19T06:30:00.000Z",
+    ],
+  },
+  tooltip: {
+    x: {
+      format: "dd/MM/yy HH:mm",
+    },
+  },
+  series: [
+    {
+      name: "series1",
+      data: [31, 40, 28, 51, 42, 109, 100],
+    },
+    {
+      name: "series2",
+      data: [11, 32, 45, 32, 34, 52, 41],
+    },
+  ],
+};
+
+export type Products = {
+  id: string;
+  name: string;
+  image: string[];
+  amount: number;
+  price: number;
+  status: "published" | "private";
+};
+
+export const products: Products[] = [
   {
-    name: "New York",
-    sales: 9800,
+    id: "728ed52f",
+    name: "Nike shoes",
+    image: ["/2225351_P.webp"],
+    amount: 20,
+    price: 200,
+    status: "published",
   },
   {
-    name: "London",
-    sales: 4567,
+    id: "489e1d42",
+    name: "Froglon T-shirt",
+    image: [],
+    amount: 125,
+    price: 60,
+    status: "private",
   },
   {
-    name: "Hong Kong",
-    sales: 3908,
+    id: "489e1d42",
+    name: "Halloween T-shirt",
+    image: [],
+    amount: 12,
+    price: 45,
+    status: "private",
   },
-  {
-    name: "San Francisco",
-    sales: 2400,
-  },
-  {
-    name: "Singapore",
-    sales: 1908,
-  },
-  {
-    name: "Zurich",
-    sales: 1398,
-  },
+  // ...
 ];
 
-export const chartdata = [
-  {
-    date: "Jan 22",
-    SemiAnalysis: 2890,
-    "The Pragmatic Engineer": 2338,
-  },
-  {
-    date: "Feb 22",
-    SemiAnalysis: 2756,
-    "The Pragmatic Engineer": 2103,
-  },
-  {
-    date: "Feb 22",
-    SemiAnalysis: 2756,
-    "The Pragmatic Engineer": 2103,
-  },
-  {
-    date: "Feb 22",
-    SemiAnalysis: 1342,
-    "The Pragmatic Engineer": 4232,
-  },
-  {
-    date: "Feb 22",
-    SemiAnalysis: 1653,
-    "The Pragmatic Engineer": 3231,
-  },
-  {
-    date: "Feb 22",
-    SemiAnalysis: 2222,
-    "The Pragmatic Engineer": 2643,
-  },
-  {
-    date: "Feb 22",
-    SemiAnalysis: 3000,
-    "The Pragmatic Engineer": 1500,
-  },
-  {
-    date: "Mar 22",
-    SemiAnalysis: 3322,
-    "The Pragmatic Engineer": 2194,
-  },
-  {
-    date: "Apr 22",
-    SemiAnalysis: 3470,
-    "The Pragmatic Engineer": 2108,
-  },
-  {
-    date: "May 22",
-    SemiAnalysis: 3475,
-    "The Pragmatic Engineer": 1812,
-  },
-  {
-    date: "Jun 22",
-    SemiAnalysis: 3129,
-    "The Pragmatic Engineer": 1726,
-  },
-];
 
-export const colors: (
-  | "slate"
-  | "violet"
-  | "indigo"
-  | "rose"
-  | "cyan"
-  | "amber"
-  | "gray"
-  | "zinc"
-  | "neutral"
-  | "stone"
-  | "red"
-  | "orange"
-  | "yellow"
-  | "lime"
-  | "green"
-  | "emerald"
-  | "teal"
-  | "sky"
-  | "blue"
-  | "purple"
-  | "fuchsia"
-  | "pink"
-)[] = ["slate", "violet", "indigo", "rose", "cyan", "amber"];

@@ -1,71 +1,55 @@
 "use client";
 
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { chartdata, cities, colors } from "@/lib/fakeData";
-import {
-  Card,
-  Metric,
-  Text,
-  AreaChart,
-  Title,
-  DonutChart,
-} from "@tremor/react";
+import Card from "@/components/Card";
+import TradingBadge from "@/components/TradingBadge";
+import { chartData } from "@/lib/fakeData";
+import ReactApexChart from "react-apexcharts";
 
-const valueFormatter = (number: number) =>
-  `$ ${Intl.NumberFormat("us").format(number).toString()}`;
-
-const dataFormatter = (number: number) => {
-  return "$ " + Intl.NumberFormat("us").format(number).toString();
-};
 
 export default function Home() {
   return (
-    <div>
+    <div className="">
       <Breadcrumbs />
       <div className="h-4" />
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card decoration="top" decorationColor="indigo">
-          <Text>Sales</Text>
-          <Metric>9,000$</Metric>
+        <Card>
+          <h1 className="text-muted-foreground">Sales</h1>
+          <h1 className="text-2xl">9,000$</h1>
+          <TradingBadge variant="success" value={2.6} />
         </Card>
-        <Card decoration="top" decorationColor="emerald">
-          <Text>Visitors</Text>
-          <Metric>11 421</Metric>
+        <Card>
+          <h1 className="text-muted-foreground">Visitors</h1>
+          <h1 className="text-2xl">11 421</h1>
+          <TradingBadge variant="destructive" value={0.9} />
         </Card>
-        <Card decoration="top" decorationColor="fuchsia">
-          <Text>Orders</Text>
-          <Metric>150</Metric>
+        <Card>
+          <h1 className="text-muted-foreground">Orders</h1>
+          <h1 className="text-2xl">150</h1>
+          <TradingBadge variant="success" value={0.1} />
         </Card>
-        <Card decoration="top" decorationColor="orange">
-          <Text>New Orders</Text>
-          <Metric>6</Metric>
+        <Card>
+          <h1 className="text-muted-foreground">New Orders</h1>
+          <h1 className="text-2xl">6</h1>
+          <TradingBadge variant="success" value={6.6} />
         </Card>
       </div>
       <div className="h-4" />
       <div className="grid lg:grid-cols-4 gap-4">
         <Card className="lg:col-span-3">
-          <Title>Total Sales</Title>
-          <AreaChart
-            data={chartdata}
-            index="date"
-            categories={["SemiAnalysis", "The Pragmatic Engineer"]}
-            colors={["indigo", "cyan"]}
-            valueFormatter={dataFormatter}
+          <h1>Total Sales</h1>
+          <ReactApexChart
+            height={350}
+            options={chartData}
+            series={chartData.series}
           />
         </Card>
         <Card>
-          <Title>Sales</Title>
-          <DonutChart
-            className="mt-6"
-            data={cities}
-            category="sales"
-            index="name"
-            valueFormatter={valueFormatter}
-            colors={colors}
-          />
+          <h1>Sales</h1>
           <div className="h-4" />
-          {cities.map((item, index) => (
+          {/* {cities.map((item, index) => (
             <h1
+              key={item.name}
               className={`text-${colors[index]}-500 flex w-full items-center`}
             >
               <div
@@ -76,7 +60,15 @@ export default function Home() {
                 {item.sales}$
               </span>
             </h1>
-          ))}
+          ))} */}
+        </Card>
+      </div>
+      <div className="h-4" />
+      <div className="grid lg:grid-cols-4 gap-4">
+        <div className="col-span-3"></div>
+        <Card>
+          <h1 className="text-muted-foreground">Current Balance</h1>
+          <h1 className="text-2xl">10,000$</h1>
         </Card>
       </div>
     </div>

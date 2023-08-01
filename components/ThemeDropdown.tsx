@@ -7,10 +7,11 @@ import {
   DropdownMenuTrigger,
   DropdownMenuItem,
 } from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
 import { Sun, Moon, Computer } from "lucide-react";
 import { useTheme } from "next-themes";
 import useMounted from "@/hooks/Mounted";
+import { cn } from "@/lib/utils";
+import { Button } from "./ui/button";
 interface ThemeDropdownProps {}
 
 const ThemeDropdown: FC<ThemeDropdownProps> = ({}) => {
@@ -19,7 +20,7 @@ const ThemeDropdown: FC<ThemeDropdownProps> = ({}) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild id="trigger" >
         <Button variant="outline" size="icon">
           {isMounted && theme === "light" ? (
             <Sun className="h-6 w-6" />
