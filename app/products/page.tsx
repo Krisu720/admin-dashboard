@@ -1,6 +1,6 @@
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { ProductsTable } from "@/components/ProductsTable";
-import { columns } from "@/components/ProductsTableColumns";
+import Breadcrumbs from "@/components/custom/Breadcrumbs";
+import { Table } from "@/components/Tables/Table";
+import { columns } from "@/components/Tables/ProductsTableColumns";
 import { Button } from "@/components/ui/button";
 import { products } from "@/lib/fakeData";
 import { Plus } from "lucide-react";
@@ -20,7 +20,7 @@ const page = ({}) => {
         </Link>
       </div>
       <div className="h-4" />
-      <ProductsTable columns={columns} data={products} />
+      <Table columns={columns} data={products} />
     </div>
   );
 };

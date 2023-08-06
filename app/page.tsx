@@ -1,13 +1,17 @@
 "use client";
 
-import Breadcrumbs from "@/components/Breadcrumbs";
-import Card from "@/components/Card";
-import TradingBadge from "@/components/TradingBadge";
+import Breadcrumbs from "@/components/custom/Breadcrumbs";
+import Card from "@/components/custom/Card";
+import TradingBadge from "@/components/custom/TradingBadge";
 import { chartData } from "@/lib/fakeData";
+import { useTheme } from "next-themes";
 import ReactApexChart from "react-apexcharts";
 
 
 export default function Home() {
+
+  const {theme} = useTheme()
+
   return (
     <div className="">
       <Breadcrumbs />
@@ -42,6 +46,7 @@ export default function Home() {
             height={350}
             options={chartData}
             series={chartData.series}
+            type={chartData.chart?.type}
           />
         </Card>
         <Card>

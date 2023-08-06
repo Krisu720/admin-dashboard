@@ -9,7 +9,7 @@ import {
 } from "./ui/dropdown-menu";
 import { Sun, Moon, Computer } from "lucide-react";
 import { useTheme } from "next-themes";
-import useMounted from "@/hooks/Mounted";
+import useMounted from "@/hooks/useMounted";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 interface ThemeDropdownProps {}

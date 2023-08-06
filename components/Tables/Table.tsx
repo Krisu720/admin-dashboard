@@ -4,37 +4,42 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 
 import {
-  Table,
+  Table as UiTable,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useEffect } from "react";
+import { DataTablePagination } from "./DataTablePagination";
 
-interface ProductsTableProps<TData, TValue> {
+interface TableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export function ProductsTable<TData, TValue>({
+export function Table<TData, TValue>({
   columns,
   data,
-}: ProductsTableProps<TData, TValue>) {
+}: TableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
+    initialState: {pagination:{pageSize:5}},
+    getPaginationRowModel: getPaginationRowModel(),
     getCoreRowModel: getCoreRowModel(),
   });
 
   console.log(table.getSelectedRowModel().rows);
   return (
     <div className="rounded-md border">
-      <Table>
+      <UiTable>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -75,7 +80,8 @@ export function ProductsTable<TData, TValue>({
             </TableRow>
           )}
         </TableBody>
-      </Table>
+      </UiTable>
+      <DataTablePagination table={table} />
     </div>
   );
 }
