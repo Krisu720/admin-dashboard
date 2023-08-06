@@ -25,6 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.react-email
 .env*.local
 .env
 # vercel

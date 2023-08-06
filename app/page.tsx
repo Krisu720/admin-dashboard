@@ -3,14 +3,14 @@
 import Breadcrumbs from "@/components/custom/Breadcrumbs";
 import Card from "@/components/custom/Card";
 import TradingBadge from "@/components/custom/TradingBadge";
+import useMounted from "@/hooks/useMounted";
 import { chartData } from "@/lib/fakeData";
 import { useTheme } from "next-themes";
 import ReactApexChart from "react-apexcharts";
 
-
 export default function Home() {
-
-  const {theme} = useTheme()
+  const mounted = useMounted();
+  const { theme } = useTheme();
 
   return (
     <div className="">
@@ -42,12 +42,14 @@ export default function Home() {
       <div className="grid lg:grid-cols-4 gap-4">
         <Card className="lg:col-span-3">
           <h1>Total Sales</h1>
-          <ReactApexChart
-            height={350}
-            options={chartData}
-            series={chartData.series}
-            type={chartData.chart?.type}
-          />
+          {mounted ? (
+            <ReactApexChart
+              height={350}
+              options={chartData}
+              series={chartData.series}
+              type={chartData.chart?.type}
+            />
+          ) : (<></>)}
         </Card>
         <Card>
           <h1>Sales</h1>

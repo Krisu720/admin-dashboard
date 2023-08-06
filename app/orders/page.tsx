@@ -1,11 +1,15 @@
-import { FC } from 'react'
+import Breadcrumbs from "@/components/custom/Breadcrumbs";
 
-interface pageProps {
-  
-}
+const page = ({}) => {
+  return (
+    <div>
+      <Breadcrumbs items={[{ name: "Orders", href: "/orders" }]} />
+      <div className="h-4" />
+      <h1 className="text-3xl font-extrabold">Orders</h1>
+      <div className="h-4" />
+      
+    </div>
+  );
+};
 
-const page: FC<pageProps> = ({}) => {
-  return <div>page</div>
-}
-
-export default page
+export default page;
