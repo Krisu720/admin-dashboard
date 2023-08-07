@@ -6,7 +6,9 @@ import TradingBadge from "@/components/custom/TradingBadge";
 import useMounted from "@/hooks/useMounted";
 import { chartData } from "@/lib/fakeData";
 import { useTheme } from "next-themes";
-import ReactApexChart from "react-apexcharts";
+import dynamic from 'next/dynamic'
+
+const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export default function Home() {
   const mounted = useMounted();

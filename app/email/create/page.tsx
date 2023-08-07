@@ -6,13 +6,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
+import useMounted from "@/hooks/useMounted";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
-const page = () => {
+const Page = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const formValidator = z.object({
@@ -21,15 +22,17 @@ const page = () => {
     content: z.string().min(1, { message: "Content required." }),
   });
 
+  type FormValidator = z.infer<typeof formValidator>;
+
   const {
     formState: { errors },
     register,
     handleSubmit,
-  } = useForm<z.infer<typeof formValidator>>({
+  } = useForm<FormValidator>({
     resolver: zodResolver(formValidator),
   });
 
-  const sendEmail: SubmitHandler<z.infer<typeof formValidator>> = async ({
+  const sendEmail: SubmitHandler<FormValidator> = async ({
     to,
     subject,
     content,
@@ -101,4 +104,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

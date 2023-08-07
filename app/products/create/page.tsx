@@ -13,34 +13,6 @@ import FirstStep from "@/components/steps/FirstStep";
 import SecondStep from "@/components/steps/SecondStep";
 import ThirdStep from "@/components/steps/ThirdStep";
 
-type Global = {
-  productName: string;
-  productDesc: string;
-  sizeVariants: string[] | null;
-  productImages:
-    | {
-        file: File;
-        url: string;
-      }[]
-    | null;
-  regularPrice: string;
-  salePrice: string | null;
-};
-
-export const StepContext = createContext<{
-  formStep: number;
-  setFormStep: (value: number) => void;
-  value: Global;
-  setValue: (value: Global) => void;
-}>({ formStep: 0, setFormStep: () => {}, value: {
-  productName: "",
-  productDesc: "",
-  sizeVariants: null,
-  productImages: null,
-  regularPrice: "",
-  salePrice: null,
-}, setValue: () => {} });
-
 const steps = [
   {
     icon: <GanttChartSquare />,
@@ -55,10 +27,41 @@ const steps = [
     name: "Confirmations",
   },
 ];
-const page = ({}) => {
+
+type StepValue = {
+  productName: string;
+  productDesc: string;
+  sizeVariants: string[] | null;
+  productImages:
+    | {
+        file: File;
+        url: string;
+      }[]
+    | null;
+  regularPrice: string;
+  salePrice: string | null;
+};
+
+type StepContext = {
+  formStep: number;
+  setFormStep: (value: number) => void;
+  value: StepValue;
+  setValue: (value: StepValue) => void;
+}
+
+export const StepContext = createContext<StepContext>({ formStep: 0, setFormStep: () => {}, value: {
+  productName: "",
+  productDesc: "",
+  sizeVariants: null,
+  productImages: null,
+  regularPrice: "",
+  salePrice: null,
+}, setValue: () => {} });
+
+const Page = ({}) => {
 
   const [formStep, setFormStep] = useState<number>(0);
-  const [value, setFormValue] = useState<Global>({
+  const [value, setFormValue] = useState<StepValue>({
     productName: "",
     productDesc: "",
     sizeVariants: null,
@@ -67,7 +70,7 @@ const page = ({}) => {
     salePrice: null,
   });
 
-  const setValue = (data: Global) => {
+  const setValue = (data: StepValue) => {
     setFormValue(data);
   };
 
@@ -94,7 +97,7 @@ const page = ({}) => {
   );
 };
 
-export default page;
+export default Page;
 
 export const Row = ({
   children,
