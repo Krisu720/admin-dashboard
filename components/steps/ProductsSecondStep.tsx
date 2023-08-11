@@ -8,7 +8,7 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const SecondStep = () => {
+const ProductsSecondStep = () => {
   const { formStep, setFormStep,setValue,value } = useContext(StepContext);
 
   const formValidation = z.object({
@@ -43,13 +43,13 @@ const SecondStep = () => {
         description="Regular brutto price on the card."
         required
       >
-        <Input type="number" {...register("price")} />
+        <Input type="number" {...register("price")} value={value.regularPrice ? value.regularPrice : undefined} />
         {errors.price?.message && (
           <h1 className="text-red-500 my-1 text-sm">{errors.price.message}</h1>
         )}
       </Row>
       <Row title="Sale Price" description="Sale price with a discount">
-        <Input type="number" {...register("salePrice")} />
+        <Input type="number" {...register("salePrice")} value={value.salePrice ? value.salePrice : undefined}/>
       </Row>
       <div className="col-span-4 flex justify-between mt-6">
         <Button variant="ghost" onClick={() => setFormStep(0)}>
@@ -63,4 +63,4 @@ const SecondStep = () => {
   );
 };
 
-export default SecondStep;
+export default ProductsSecondStep;

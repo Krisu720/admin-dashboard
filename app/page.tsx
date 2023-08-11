@@ -4,15 +4,24 @@ import Breadcrumbs from "@/components/custom/Breadcrumbs";
 import Card from "@/components/custom/Card";
 import TradingBadge from "@/components/custom/TradingBadge";
 import useMounted from "@/hooks/useMounted";
-import { chartData } from "@/lib/fakeData";
+import { areaChart, chartColors, columnChart, donutChart } from "@/lib/charts";
 import { useTheme } from "next-themes";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 
 export default function Home() {
   const mounted = useMounted();
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
+
+  const theme = resolvedTheme === "light" ? "light" : "dark";
+  const donutSeries = [2100, 4300, 2500];
+
+  const areaData = areaChart(theme);
+  const donutData = donutChart(theme);
+  const columnData = columnChart(theme);
 
   return (
     <div className="">
@@ -44,37 +53,47 @@ export default function Home() {
       <div className="grid lg:grid-cols-4 gap-4">
         <Card className="lg:col-span-3">
           <h1>Total Sales</h1>
-          {mounted ? (
+          {mounted && areaData ? (
             <ReactApexChart
-              height={350}
-              options={chartData}
-              series={chartData.series}
-              type={chartData.chart?.type}
+              height={400}
+              options={areaData}
+              series={areaData.series}
+              type={areaData.chart?.type}
             />
-          ) : (<></>)}
+          ) : (
+            <></>
+          )}
         </Card>
         <Card>
-          <h1>Sales</h1>
+          <h1>Annual turnover</h1>
           <div className="h-4" />
-          {/* {cities.map((item, index) => (
-            <h1
-              key={item.name}
-              className={`text-${colors[index]}-500 flex w-full items-center`}
-            >
-              <div
-                className={`bg-${colors[index]}-500 rounded-full h-2 w-2 mr-2`}
-              />
-              {item.name}{" "}
-              <span className="dark:text-white text-black ml-auto">
-                {item.sales}$
-              </span>
-            </h1>
-          ))} */}
+          <ReactApexChart
+            height={300}
+            options={donutData}
+            type={donutData.chart?.type}
+            series={donutSeries}
+          />
+          {donutSeries.map((item, index) => (
+            <div key={index} className="flex item-center">
+              <div className={"h-10 w-10 bg-[" + chartColors[index] + "]"} />
+              <h1>{item}</h1>
+            </div>
+          ))}
         </Card>
       </div>
       <div className="h-4" />
       <div className="grid lg:grid-cols-4 gap-4">
-        <div className="col-span-3"></div>
+        <div className="col-span-2">
+          <Card>
+            <h1>Orders</h1>
+            <ReactApexChart
+              height={300}
+              series={columnData.series}
+              options={columnData}
+              type={columnData.chart?.type}
+            />
+          </Card>
+        </div>
         <Card>
           <h1 className="text-muted-foreground">Current Balance</h1>
           <h1 className="text-2xl">10,000$</h1>

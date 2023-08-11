@@ -9,7 +9,7 @@ import { toast } from "../ui/use-toast";
 import Image from "next/image";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 
-const ThirdStep = () => {
+const ProductsThirdStep = () => {
   const { formStep, setFormStep, value } = useContext(StepContext);
 
   return (
@@ -81,4 +81,4 @@ const ThirdStep = () => {
   );
 };
 
-export default ThirdStep;
+export default ProductsThirdStep;

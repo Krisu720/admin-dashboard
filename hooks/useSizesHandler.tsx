@@ -47,7 +47,7 @@ const useSizesHandler = () => {
     });
   };
 
-  return { sizeRef, sizes, addSize, removeSize };
+  return { sizeRef, sizes, addSize, removeSize,setSizes};
 };
 
 export default useSizesHandler;

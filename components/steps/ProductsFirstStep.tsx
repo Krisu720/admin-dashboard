@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import useFilesHandler from "@/hooks/useFilesHandler";
 import useSizesHandler from "@/hooks/useSizesHandler";
@@ -16,11 +16,20 @@ import { Badge } from "../ui/badge";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import Image from "next/image";
 
-const FirstStep = () => {
-  const { setFormStep,setValue,value } = useContext(StepContext);
-  const { sizeRef, sizes, addSize, removeSize } = useSizesHandler();
-  const { files, handleFiles, removeFile } = useFilesHandler();
+const ProductsFirstStep = () => {
+  const { setFormStep, setValue, value } = useContext(StepContext);
+  const { sizeRef, sizes, addSize, removeSize, setSizes } = useSizesHandler();
+  const { files, handleFiles, removeFile, setFiles } = useFilesHandler();
   const [animateRef] = useAutoAnimate<HTMLDivElement>();
+
+  useEffect(() => {
+    if (value.productImages) {
+      setFiles(value.productImages);
+    }
+    if (value.sizeVariants) {
+      setSizes(value.sizeVariants);
+    }
+  }, []);
 
   const formValidation = z.object({
     name: z
@@ -38,17 +47,19 @@ const FirstStep = () => {
     resolver: zodResolver(formValidation),
   });
 
-  const checkForm:SubmitHandler<z.infer<typeof formValidation>> = ({name,description}) => {
+  const checkForm: SubmitHandler<z.infer<typeof formValidation>> = ({
+    name,
+    description,
+  }) => {
     setValue({
       ...value,
       productName: name,
       productDesc: description,
       sizeVariants: sizes,
       productImages: files,
-    })
+    });
     setFormStep(1);
   };
-
 
   return (
     <form
@@ -60,7 +71,10 @@ const FirstStep = () => {
         description="Add product title that buyers would likely use to search."
         required
       >
-        <Input {...register("name")} />
+        <Input
+          {...register("name")}
+          value={value.productName ? value.productName : undefined}
+        />
         {errors.name?.message && (
           <h1 className="text-red-500 my-1 text-sm">{errors.name.message}</h1>
         )}
@@ -70,7 +84,10 @@ const FirstStep = () => {
         description="Add product title that buyers would likely use to search."
         required
       >
-        <Textarea {...register("description")} />
+        <Textarea
+          {...register("description")}
+          value={value.productDesc ? value.productName : undefined}
+        />
         {errors.description?.message && (
           <h1 className="text-red-500 my-1 text-sm">
             {errors.description.message}
@@ -142,4 +159,4 @@ const FirstStep = () => {
   );
 };
 
-export default FirstStep;
+export default ProductsFirstStep;

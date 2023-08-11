@@ -28,7 +28,7 @@ const useFilesHandler = () => {
     return fileUrlArray;
   };
 
-  return { files, handleFiles, removeFile };
+  return { files, handleFiles, removeFile,setFiles };
 };
 
 export default useFilesHandler;

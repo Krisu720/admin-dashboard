@@ -1,6 +1,5 @@
 "use client";
 
-import { Products } from "@/lib/fakeData";
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "../ui/checkbox";
 import { Badge } from "../ui/badge";
@@ -23,8 +22,9 @@ import {
   Unlock,
 } from "lucide-react";
 import { toast } from "../ui/use-toast";
+import { Product } from "@/types/global";
 
-export const columns: ColumnDef<Products>[] = [
+export const columns: ColumnDef<Product>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -45,6 +45,10 @@ export const columns: ColumnDef<Products>[] = [
     ),
     enableSorting: false,
     enableHiding: false,
+  },
+  {
+    accessorKey:"id",
+    header:"Id"
   },
   {
     accessorKey: "image",

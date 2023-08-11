@@ -9,9 +9,9 @@ import {
 import { ReactNode, createContext, useState } from "react";
 import Card from "@/components/custom/Card";
 import Stepper from "@/components/custom/Stepper";
-import FirstStep from "@/components/steps/FirstStep";
-import SecondStep from "@/components/steps/SecondStep";
-import ThirdStep from "@/components/steps/ThirdStep";
+import ProductsFirstStep from "@/components/steps/ProductsFirstStep";
+import ProductsSecondStep from "@/components/steps/ProductsSecondStep";
+import ProductsThirdStep from "@/components/steps/ProductsThirdStep";
 
 const steps = [
   {
@@ -87,11 +87,11 @@ const Page = ({}) => {
       <div className="h-4" />
       <Card className="lg:col-span-3 overflow-hidden">
         <Stepper active={formStep} steps={steps} />
-        {formStep === 0 && <FirstStep />}
+        {formStep === 0 && <ProductsFirstStep />}
 
-        {formStep === 1 && <SecondStep />}
+        {formStep === 1 && <ProductsSecondStep/>}
 
-        {formStep === 2 && <ThirdStep />}
+        {formStep === 2 && <ProductsThirdStep/>}
       </Card>
     </StepContext.Provider>
   );

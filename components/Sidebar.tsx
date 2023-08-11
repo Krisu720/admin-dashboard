@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { Home, Mail, Paperclip, ShoppingBag } from "lucide-react";
+import { Home, Mail, Paperclip, ShoppingBag, Users2 } from "lucide-react";
 import { Button } from "./ui/button";
 import ThemeDropdown from "./ThemeDropdown";
 import { Settings, LogOut, Package } from "lucide-react";
@@ -25,12 +25,18 @@ const nav: Nav[] = [
   {
     name: "Orders",
     href: "/orders",
-    Icon: <ShoppingBag className="h-6 w-6 mr-2"/>,
-  },{
+    Icon: <ShoppingBag className="h-6 w-6 mr-2" />,
+  },
+  {
     name: "Email",
     href: "/email",
-    Icon: <Mail className="h-6 w-6 mr-2"/>
-  }
+    Icon: <Mail className="h-6 w-6 mr-2" />,
+  },
+  {
+    name: "Team",
+    href: "/team",
+    Icon: <Users2  className="h-6 w-6 mr-2" />,
+  },
 ];
 
 const Sidebar = ({ closeSidebar }: { closeSidebar?: () => void }) => {

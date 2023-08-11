@@ -20,7 +20,7 @@ const page = ({}) => {
         </Link>
       </div>
       <div className="h-4" />
-      <Table columns={columns} data={products} />
+      <Table columns={columns} data={products}  filteredValue="name"/>
     </div>
   );
 };

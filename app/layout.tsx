@@ -21,11 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(poppins.className)}>
+      <body className={cn(inter.className)}>
         <ThemeProvider>
           <div className="flex">
-
-            <div className="lg:block fixed left-0 top-0 hidden flex-shrink-0 w-80 dark:bg-slate-950 bg-gray-200 h-screen border-r p-4">
+            <div className="lg:block fixed left-0 top-0 hidden flex-shrink-0 w-80 dark:bg-transparent bg-slate-200 h-screen border-r p-4">
               <Sidebar />
             </div>
 
@@ -33,9 +32,8 @@ export default function RootLayout({
 
             <div className="w-full p-3 lg:p-6">
               {children}
-              <div className="h-20 lg:hidden block "/>
+              <div className="h-20 lg:hidden block " />
             </div>
-
           </div>
 
           <div className="fixed bottom-5 left-5 block lg:hidden">
@@ -43,7 +41,6 @@ export default function RootLayout({
           </div>
 
           <Toaster />
-
         </ThemeProvider>
       </body>
     </html>
